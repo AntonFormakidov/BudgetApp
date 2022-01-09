@@ -2,12 +2,15 @@ package pl.coderslab.transaction;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.budget.BudgetRepository;
 import pl.coderslab.category.CategoryRepository;
+
+import javax.validation.Valid;
 
 
 @Controller
@@ -38,7 +41,12 @@ public class TransactionController {
     }
 
     @PostMapping("/add")
-    public String processAdd(Transaction transaction) {
+    public String processAdd(@Valid Transaction transaction, BindingResult result, Model model) {
+        if (result.hasErrors()){
+            model.addAttribute("budget", budgetRepository.findAll());
+            model.addAttribute("category", categoryRepository.findAll());
+            return "transaction/add";
+        }
         transactionRepository.save(transaction);
         return "redirect:/transaction/list";
     }
@@ -52,7 +60,12 @@ public class TransactionController {
     }
 
     @PostMapping("/update/{id}")
-        public String processUpdate(Transaction transaction) {
+        public String processUpdate(@Valid Transaction transaction, BindingResult result, Model model) {
+        if (result.hasErrors()){
+            model.addAttribute("budget", budgetRepository.findAll());
+            model.addAttribute("category", categoryRepository.findAll());
+            return "transaction/update";
+        }
         transactionRepository.save(transaction);
         return "redirect:/transaction/list";
     }

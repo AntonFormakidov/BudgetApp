@@ -18,12 +18,15 @@
         </label><br/>
     <label>amount
         <form:input path="amount"/>
+        <form:errors path="amount" cssClass="error" />
     </label><br/>
     <label>date
-        <form:input path="date"/>
+        <form:input path="date" placeholder="dd.MM.yyyy"/>
+        <form:errors path="date" cssClass="error" />
     </label><br/>
     <label>name
         <form:input path="name"/>
+        <form:errors path="name" cssClass="error" />
     </label><br/>
     <input type="submit" value="Save">
     </form:form>

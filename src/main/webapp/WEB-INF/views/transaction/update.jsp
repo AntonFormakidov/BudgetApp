@@ -20,7 +20,7 @@
         <form:input path="amount"/>
     </label><br/>
     <label>date
-        <form:input path="date"/>
+        <form:input path="date" placeholder="dd.MM.yyyy"/>
     </label><br/>
     <label>name
         <form:input path="name"/>

@@ -12,6 +12,7 @@
         <form:hidden path="id"/>
     <label>name
         <form:input path="name"/>
+        <form:errors path="name" cssClass="error" />
     </label><br/>
     <label>description
         <form:input path="description"/>
